@@ -27,7 +27,10 @@ namespace WebUI
             services.AddAutoMapper(typeof(AutoMapperHelper));
 
             services.AddSingleton<IAuthService, AuthManager>();
+            services.AddSingleton<IArticleService, ArticleManager>();
             services.AddSingleton<IQuizService, QuizManager>();
+
+            services.AddSingleton<IArticleDal, EfArticleDal>();
             services.AddSingleton<IQuizDal, EfQuizDal>();
         }
 

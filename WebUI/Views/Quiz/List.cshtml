@@ -1,0 +1,22 @@
+﻿@model List<QuizDto>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Tarih</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quiz in Model)
+        {
+            <tr>
+                <th scope="row">@quiz.Id</th>
+                <td>@quiz.Question</td>
+                <td>@quiz.CorrectAnswer</td>
+                <td><a class="btn btn-danger" asp-controller="Quiz" asp-action="Delete" asp-route-quizId="@quiz.Id">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
