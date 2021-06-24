@@ -5,7 +5,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfArticleDal:EfEntityRepositoryBase<SqlServerProjecetDbContext, Article>,IArticleDal
+    public class EfArticleDal:EfEntityRepositoryBase<ProjectDbContext, Article>,IArticleDal
     {
     }
 }

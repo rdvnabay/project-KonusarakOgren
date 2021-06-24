@@ -5,7 +5,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfQuizDal: EfEntityRepositoryBase<SqlServerProjecetDbContext, Quiz>,IQuizDal
+    public class EfQuizDal: EfEntityRepositoryBase<ProjectDbContext, Quiz>,IQuizDal
     {
     }
 }
