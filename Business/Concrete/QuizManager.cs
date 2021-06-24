@@ -23,8 +23,8 @@ namespace Business.Concrete
         public void Add(QuizAddDto quizAddDto)
         {
             var quiz = _mapper.Map<Quiz>(quizAddDto);
-            var article=_mapper.Map<Article>(quizAddDto);
-            _articleService.Add(article);
+            //var article=_mapper.Map<Article>(quizAddDto);
+            //_articleService.Add(article);
             _quizDal.Add(quiz);
         }
         public void Delete(Quiz quiz)
@@ -52,6 +52,15 @@ namespace Business.Concrete
             var quizzess= _quizDal.GetAll(x=>x.Id==articleId);
             var quizzesDto = _mapper.Map<List<QuizDto>>(quizzess);
             return quizzesDto;    
+        }
+
+        public void AddMultiple(QuizAddDto[] quizAddDto)
+        {
+            var quizzes = _mapper.Map<Quiz[]>(quizAddDto);
+            foreach (var quiz in quizzes)
+            {
+                _quizDal.Add(quiz);
+            }
         }
     }
 }

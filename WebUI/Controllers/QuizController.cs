@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebUI.Controllers
 {
@@ -13,13 +14,14 @@ namespace WebUI.Controllers
         }
         public IActionResult Add()
         {
-            return View();
+            QuizAddDto[] quizAddDto = new QuizAddDto[4];
+            return View(quizAddDto);
         }
 
         [HttpPost]
-        public IActionResult Add(QuizAddDto quizAddDto)
+        public IActionResult Add(QuizAddDto[] quizAddDto)
         {
-            _quizService.Add(quizAddDto);
+            _quizService.AddMultiple(quizAddDto);
             return RedirectToAction("Index","Home");
         }
 

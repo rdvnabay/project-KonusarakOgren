@@ -7,6 +7,7 @@ namespace Business.Abstract
     public interface IQuizService
     {
         void Add(QuizAddDto quizAddDto);
+        void AddMultiple(QuizAddDto[] quizAddDto);
         void Delete(Quiz quiz);
         void Update(Quiz quiz);
         Quiz Get(int quizId);
