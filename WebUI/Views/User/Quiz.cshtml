@@ -1,0 +1,21 @@
+﻿@model Article
+<h1>@Model.Title</h1>
+<p>
+    @Model.Content
+</p>
+
+<div class="row mt-5">
+    @foreach (var quiz in Model.Quizzes)
+    {
+        <div class="col-md-6 mb-5">
+            <p> @quiz.Question</p>
+            <button class="btn btn-outline-dark btn-block">@quiz.OptionA</button>
+            <button class="btn btn-outline-dark btn-block">@quiz.OptionB</button>
+            <button class="btn btn-outline-dark btn-block">@quiz.OptionC</button>
+            <button class="btn btn-outline-dark btn-block">@quiz.OptionD</button>
+        </div>
+    }
+</div>
+
+
+

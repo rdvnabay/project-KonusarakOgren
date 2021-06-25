@@ -1,0 +1,14 @@
+﻿@model List<string>
+<div class="form-group">
+    <label for="exampleformcontrolselect1">Yazı Seçiniz</label>
+    <select class="form-control">
+        @foreach (var title in Model)
+        {
+            <option value="@title">@title</option>
+        }
+    </select>
+</div>
+@*<div class="form-group">
+    <label asp-for="@Model[0].Content"></label>
+    <textarea asp-for="@Model[0].Content" class="form-control" rows="3"></textarea>
+</div>*@

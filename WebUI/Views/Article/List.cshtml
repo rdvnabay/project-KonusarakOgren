@@ -13,7 +13,7 @@
         {
             <tr>
                 <th scope="row">@article.Id</th>
-                <td>@article.Title.Substring(0,25)</td>
+                <td>@article.Title</td>
                 <td>@article.CreatedDate.ToString("yyyy-MM-dd")</td>
                 <td><a class="btn btn-danger" asp-controller="Article" asp-action="Delete" asp-route-articleId="@article.Id">Sil</a></td>
             </tr>
