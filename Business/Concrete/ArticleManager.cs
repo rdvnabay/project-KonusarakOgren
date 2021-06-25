@@ -4,6 +4,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Business.Concrete
 {
@@ -34,6 +35,15 @@ namespace Business.Concrete
             return articlesDto;
         }
 
-     
+        public List<string> GetAllByTitle()
+        {
+          var titles= _articleDal.GetAll().Select(x => x.Title).ToList();
+          return titles;
+        }
+
+        public Article GetArticleAndQuizzes(int articleId)
+        {
+            return _articleDal.GetArticleAndQuizzes(articleId);
+        }
     }
 }
