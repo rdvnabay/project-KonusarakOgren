@@ -14,12 +14,12 @@ namespace WebUI.Controllers
         }
         public IActionResult Add()
         {
-            QuizAddDto[] quizAddDto = new QuizAddDto[4];
-            return View(quizAddDto);
+           // QuizAddDto[] quizAddDto = new QuizAddDto[4];
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Add(QuizAddDto[] quizAddDto)
+        public IActionResult Add(List<QuizAddDto> quizAddDto)
         {
             _quizService.AddMultiple(quizAddDto);
             return RedirectToAction("Index","Home");

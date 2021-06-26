@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebUI.Controllers
 {
@@ -14,8 +16,14 @@ namespace WebUI.Controllers
         }
         public IActionResult Quiz(int articleId)
         {
-            var quiz= _articleService.GetArticleAndQuizzes(articleId);
+            var quiz = _quizService.GetAllByArticle(articleId);
             return View(quiz);
+        }
+
+        [HttpPost]
+        public IActionResult QuizResult(List<QuizDto> quizDto)
+        {
+            return View();
         }
     }
 }

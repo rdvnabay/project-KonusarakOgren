@@ -54,13 +54,20 @@ namespace Business.Concrete
             return quizzesDto;    
         }
 
-        public void AddMultiple(QuizAddDto[] quizAddDto)
+        public void AddMultiple(List<QuizAddDto> quizAddDto)
         {
-            var quizzes = _mapper.Map<Quiz[]>(quizAddDto);
+            var quizzes = _mapper.Map<List<Quiz>>(quizAddDto);
             foreach (var quiz in quizzes)
             {
                 _quizDal.Add(quiz);
             }
+        }
+
+        public List<QuizDto> GetAllByArticle(int articleId)
+        {
+            var quizzes= _quizDal.GetAll(x => x.ArticleId == articleId);
+            var quizzesDto = _mapper.Map<List<QuizDto>>(quizzes);
+            return quizzesDto;
         }
     }
 }

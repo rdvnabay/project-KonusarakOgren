@@ -1,4 +1,4 @@
-﻿@model QuizAddDto[]
+﻿@model List<QuizAddDto>
 <form asp-action="Add" method="post">
     @await Component.InvokeAsync("TitleList")
     @for (int i = 0; i < 4; i++)

@@ -12,7 +12,7 @@
         @foreach (var quiz in Model)
         {
             <tr>
-                <th scope="row">@quiz.Id</th>
+                <td scope="row">@quiz.Id</td>
                 <td>@quiz.Question</td>
                 <td>@quiz.CorrectAnswer</td>
                 <td><a class="btn btn-danger" asp-controller="Quiz" asp-action="Delete" asp-route-quizId="@quiz.Id">Sil</a></td>
