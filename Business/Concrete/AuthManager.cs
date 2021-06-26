@@ -1,13 +1,29 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Results;
 using Entities.Dtos;
 
 namespace Business.Concrete
 {
     public class AuthManager : IAuthService
     {
-        public void Login(UserForLoginDto userForLoginDto)
+        private IUserService _userService;
+        public AuthManager(IUserService userService)
         {
-            throw new System.NotImplementedException();
+            _userService = userService;
+        }
+
+        [ValidationAspect(typeof(UserValidator))]
+        public IResult Login(UserForLoginDto userForLoginDto)
+        {
+            var user= _userService.getByUserName(userForLoginDto.UserName);
+            if (user == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+            return new SuccessResult(Messages.LoginSuccessful);
         }
     }
 }

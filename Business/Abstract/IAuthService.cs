@@ -1,9 +1,10 @@
-﻿using Entities.Dtos;
+﻿using Core.Utilities.Results;
+using Entities.Dtos;
 
 namespace Business.Abstract
 {
     public interface IAuthService
     {
-        void Login(UserForLoginDto userForLoginDto);
+        IResult Login(UserForLoginDto userForLoginDto);
     }
 }

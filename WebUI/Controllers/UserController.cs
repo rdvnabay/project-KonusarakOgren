@@ -23,7 +23,7 @@ namespace WebUI.Controllers
         [HttpPost]
         public IActionResult QuizResult(List<QuizDto> quizDto)
         {
-            return View();
+            return RedirectToAction("Quiz","User");
         }
     }
 }

@@ -5,10 +5,12 @@
     <title>@ViewData["Title"] - TestProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body>
     <header>
-        <partial name="Partial/_Navi">
+        @*<partial name="Partial/_Navi">*@
+        @await Component.InvokeAsync("Navbar")
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -20,5 +22,9 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         @await RenderSectionAsync("Scripts", required: false)
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        @RenderSection("validationScript", false)
+        @RenderSection("completeQuizScript", false)
 </body>
 </html>
