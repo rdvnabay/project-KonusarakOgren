@@ -1,13 +1,13 @@
-using Business.Abstract;
-using Business.Concrete;
 using Business.Helpers;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebUI.Services;
 
 namespace WebUI
 {
@@ -23,17 +23,25 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddMvc().AddNewtonsoftJson(options =>
+            services.AddMvc()
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>())
+                .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+            services.AddSession();
+            services.AddDistributedMemoryCache();
             services.AddAutoMapper(typeof(AutoMapperHelper));
 
-            services.AddSingleton<IAuthService, AuthManager>();
-            services.AddSingleton<IArticleService, ArticleManager>();
-            services.AddSingleton<IQuizService, QuizManager>();
+            services.AddSingleton<IAuthSessionService, AuthSessionService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddSingleton<IArticleDal, EfArticleDal>();
-            services.AddSingleton<IQuizDal, EfQuizDal>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+        options =>
+        {
+            options.LoginPath = new PathString("/auth/login");
+            options.AccessDeniedPath = new PathString("/auth/denied");
+        });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,6 +62,10 @@ namespace WebUI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
