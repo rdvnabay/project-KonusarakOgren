@@ -1,4 +1,5 @@
 using Business.Helpers;
+using Core.Extensions;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace WebUI
 
             services.AddSingleton<IAuthSessionService, AuthSessionService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IWebRequestContentSiteService, WebRequestContentSiteService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
@@ -62,6 +64,8 @@ namespace WebUI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseSession();
 

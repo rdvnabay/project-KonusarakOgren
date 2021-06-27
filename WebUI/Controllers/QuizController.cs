@@ -1,20 +1,26 @@
 ﻿using Business.Abstract;
 using Entities.Dtos;
+using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using WebUI.Helper;
+using WebUI.Services;
 
 namespace WebUI.Controllers
 {
     public class QuizController : Controller
     {
         private IQuizService _quizService;
-        public QuizController(IQuizService quizService)
+        private IWebRequestContentSiteService _webRequestContentSiteService;
+        public QuizController(IQuizService quizService, IWebRequestContentSiteService webRequestContentSiteService)
         {
             _quizService = quizService;
+            _webRequestContentSiteService = webRequestContentSiteService;
         }
         public IActionResult Add()
         {
-           // QuizAddDto[] quizAddDto = new QuizAddDto[4];
+            var titles=_webRequestContentSiteService.LoadSite("https://www.wired.com/");
+            ViewBag.Title = titles;
             return View();
         }
 
