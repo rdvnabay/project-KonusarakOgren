@@ -7,6 +7,7 @@ namespace WebUI.Services
 {
     public interface IWebRequestContentSiteService
     {
-        List<string> LoadSite(string url);
+        List<string> LoadSite();
+        List<string> Links();
     }
 }

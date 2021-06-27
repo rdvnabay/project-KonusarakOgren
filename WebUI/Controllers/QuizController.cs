@@ -19,7 +19,9 @@ namespace WebUI.Controllers
         }
         public IActionResult Add()
         {
-            var titles=_webRequestContentSiteService.LoadSite("https://www.wired.com/");
+            var titles=_webRequestContentSiteService.LoadSite();
+            var link = _webRequestContentSiteService.Links();
+            ViewBag.Link = link;
             ViewBag.Title = titles;
             return View();
         }
