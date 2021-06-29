@@ -12,7 +12,7 @@ namespace WebUI.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var article = _articleService.GetById(1);
+            var article = _articleService.GetById(7);
             return View(article);
         }
     }

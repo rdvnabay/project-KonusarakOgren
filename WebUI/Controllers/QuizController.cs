@@ -27,9 +27,9 @@ namespace WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult List(int articleId)
+        public IActionResult List()
         {
-            var quiz = _quizService.GetAllById(articleId);
+            var quiz = _quizService.GetAll();
             return View(quiz);
         }
     }

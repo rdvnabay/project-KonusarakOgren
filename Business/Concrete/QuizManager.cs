@@ -42,9 +42,11 @@ namespace Business.Concrete
         {
            return _quizDal.Get(x =>x.Id==quizId);
         }
-        public List<Quiz> GetAll()
+        public List<QuizDto> GetAll()
         {
-            return _quizDal.GetAll();
+            var quizzes= _quizDal.GetAll();
+            var quizzesDto = _mapper.Map<List<QuizDto>>(quizzes);
+            return quizzesDto;
         }
 
         public List<QuizDto> GetAllById(int articleId)

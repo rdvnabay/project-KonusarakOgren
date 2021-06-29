@@ -11,7 +11,7 @@ namespace Business.Abstract
         void Delete(Quiz quiz);
         void Update(Quiz quiz);
         Quiz Get(int quizId);
-        List<Quiz> GetAll();
+        List<QuizDto> GetAll();
         List<QuizDto> GetAllById(int articleId);
         List<QuizDto> GetAllByArticle(int articleId);
     }

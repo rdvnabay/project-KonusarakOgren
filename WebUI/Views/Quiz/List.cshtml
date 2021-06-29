@@ -15,7 +15,7 @@
                 <td scope="row">@quiz.Id</td>
                 <td>@quiz.Question</td>
                 <td>@quiz.CorrectAnswer</td>
-                <td><a class="btn btn-danger" asp-controller="Quiz" asp-action="Delete" asp-route-quizId="@quiz.Id">Sil</a></td>
+                <td><a class="btn btn-danger" asp-controller="User" asp-action="Quiz" asp-route-quizId="@quiz.Id">Sınava Gir</a></td>
             </tr>
         }
     </tbody>
