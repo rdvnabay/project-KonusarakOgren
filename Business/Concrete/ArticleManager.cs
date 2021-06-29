@@ -17,8 +17,9 @@ namespace Business.Concrete
             _articleDal = articleDal;
             _mapper = mapper;
         }
-        public void Add(Article article)
+        public void Add(ArticleAddDto articleAddDto)
         {
+            var article= _mapper.Map<Article>(articleAddDto);
             _articleDal.Add(article);
         }
 
@@ -44,6 +45,17 @@ namespace Business.Concrete
         public Article GetArticleAndQuizzes(int articleId)
         {
             return _articleDal.GetArticleAndQuizzes(articleId);
+        }
+
+        public string getByContent(int id)
+        {
+            var article= _articleDal.Get(x => x.Id == id);
+            return article.Content;
+        }
+
+        public Article GetById(int id)
+        {
+            return _articleDal.Get(x => x.Id == id);
         }
     }
 }
