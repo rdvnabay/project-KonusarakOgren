@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using Business.Abstract;
+﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
-using System;
 
 namespace Business.Concrete
 {

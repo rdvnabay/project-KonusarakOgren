@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Services;
 
@@ -14,6 +15,7 @@ namespace WebUI.Controllers
             _authService = authService;
             _authSessionService = authSessionService;
         }
+
         public IActionResult Login()
         { 
             return View();
@@ -29,7 +31,8 @@ namespace WebUI.Controllers
             var result= _authService.Login(userForLoginDto);
             if (!result.Success)
             {
-                return View(result.Message);
+                ViewBag.UserNotFound = result.Message;
+                return View();
             }
              var user= _authSessionService.GetUser();
             _authSessionService.SetUser(userForLoginDto);

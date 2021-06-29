@@ -23,6 +23,11 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.UserNotFound);
             }
+            else if(user.Password!=userForLoginDto.Password)
+            {
+                return new ErrorResult(Messages.WrongPassword);
+            }
+
             return new SuccessResult(Messages.LoginSuccessful);
         }
     }

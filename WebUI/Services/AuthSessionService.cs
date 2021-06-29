@@ -32,6 +32,5 @@ namespace WebUI.Services
         {
             _httpContextAccessor.HttpContext.Session.Clear();
         }
-
     }
 }
