@@ -38,13 +38,13 @@ namespace WebUI
             services.AddSingleton<IWebRequestContentSiteService, WebRequestContentSiteService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-        options =>
-        {
+                    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+             options =>
+             {
             options.LoginPath = new PathString("/auth/login");
             options.AccessDeniedPath = new PathString("/auth/denied");
-        });
-        }
+           });
+           }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -65,7 +65,7 @@ namespace WebUI
 
             app.UseRouting();
 
-            app.ConfigureCustomExceptionMiddleware();
+           // app.ConfigureCustomExceptionMiddleware();
 
             app.UseSession();
 

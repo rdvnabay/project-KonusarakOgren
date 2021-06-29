@@ -10,7 +10,9 @@ namespace DataAccess.Context
             optionsBuilder.UseSqlite("Data Source=Project.db;");
         }
 
-        public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
