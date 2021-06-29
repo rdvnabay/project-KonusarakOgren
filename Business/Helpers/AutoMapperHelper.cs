@@ -12,6 +12,7 @@ namespace Business.Helpers
             CreateMap<Quiz, QuizAddDto>().ReverseMap();
             CreateMap<Article, QuizAddDto>().ReverseMap();
             CreateMap<Article, ArticleDto>().ReverseMap();
+            CreateMap<Article, ArticleAddDto>().ReverseMap();
             CreateMap<Quiz, QuizDto>().ReverseMap();
         }
     }

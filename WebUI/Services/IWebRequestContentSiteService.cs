@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebUI.Models;
 
 namespace WebUI.Services
 {
     public interface IWebRequestContentSiteService
     {
-        List<string> LoadSite();
-        List<string> Links();
+        ArticleListModel LoadSite();
     }
 }
