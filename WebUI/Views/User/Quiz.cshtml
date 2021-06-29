@@ -1,21 +1,78 @@
-﻿@model Article
-<h1>@Model.Title</h1>
-<p>
-    @Model.Content
-</p>
+﻿@model List<QuizDto>
 
-<div class="row mt-5">
-    @foreach (var quiz in Model.Quizzes)
+@await Component.InvokeAsync("GetArticleById")
+@*<form asp-action="QuizResult" method="post" class="row mt-5">*@
+<div class="row" mt-5>
+    @foreach (var item in Model)
     {
-        <div class="col-md-6 mb-5">
-            <p> @quiz.Question</p>
-            <button class="btn btn-outline-dark btn-block">@quiz.OptionA</button>
-            <button class="btn btn-outline-dark btn-block">@quiz.OptionB</button>
-            <button class="btn btn-outline-dark btn-block">@quiz.OptionC</button>
-            <button class="btn btn-outline-dark btn-block">@quiz.OptionD</button>
+    <div class="col-md-6 mb-5">
+        <p> @item.Question</p>
+        <div class="form-check">
+            <input class="form-check-input optionA" type="checkbox" value="@item.OptionA" id="optionA">
+            <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+            </label>
         </div>
+        <div class="form-check">
+            <input class="form-check-input optionB" type="checkbox" value="@item.OptionA" id="optionB">
+            <label class="form-check-label" for="flexCheckChecked">
+                Checked checkbox
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input optionC" type="checkbox" value="@item.OptionC" id="optionC">
+            <label class="form-check-label" for="flexCheckChecked">
+                Checked checkbox
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input optionD" type="checkbox" value="@item.OptionD" id="optionD" >
+            <label class="form-check-label" for="flexCheckChecked">
+                Checked checkbox
+            </label>
+        </div>
+        @*<button class="btn btn-outline-dark btn-block">@item.OptionA</button>
+        <button class="btn btn-outline-dark btn-block">@item.OptionB</button>
+        <button class="btn btn-outline-dark btn-block">@item.OptionC</button>
+        <button class="btn btn-outline-dark btn-block">@item.OptionD</button>*@
+    </div>
     }
+    <button type="submit" id="completeQuiz" class="btn btn-outline-dark btn-block col-md-8 mx-auto">SINAVI TAMAMLA</button>
+    @*</form>*@
 </div>
+
+@section completeQuizScript{
+    <script type="text/javascript">
+    $(function () {
+        $("#completeQuiz").click(function () {
+           // var option = $(".optionA").val();
+         
+            var quizzes = [];
+            quizzes.optionA = $(".optionA").val();
+            quizzes.optionB = $(".optionB").val();
+            quizzes.optionC = $(".optionC").val();
+            quizzes.optionD = $(".optionD").val();
+            alert(quizzes);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("QuizResult")',
+                data: '{quizzes: ' + JSON.stringify(quizzes) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Data has been added successfully.");
+                    alert("quizzes");
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+    </script>
+}
+
 
 
 
