@@ -1,9 +1,7 @@
 ﻿using Business.Abstract;
 using Entities.Dtos;
-using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using WebUI.Helper;
 using WebUI.Services;
 
 namespace WebUI.Controllers
@@ -19,10 +17,6 @@ namespace WebUI.Controllers
         }
         public IActionResult Add()
         {
-            var titles=_webRequestContentSiteService.LoadSite();
-            var link = _webRequestContentSiteService.Links();
-            ViewBag.Link = link;
-            ViewBag.Title = titles;
             return View();
         }
 
@@ -30,12 +24,12 @@ namespace WebUI.Controllers
         public IActionResult Add(List<QuizAddDto> quizAddDto)
         {
             _quizService.AddMultiple(quizAddDto);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult List(int articleId)
         {
-            var quiz=_quizService.GetAllById(articleId);
+            var quiz = _quizService.GetAllById(articleId);
             return View(quiz);
         }
     }
